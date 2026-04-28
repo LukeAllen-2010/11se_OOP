@@ -15,3 +15,10 @@ account_balance = 129.95
 #4 Prompt user for updated credit card number and save new number
 #5 Change owner name to Alex Jones
 #6 Subtract $25 from account balance
+
+age += 1
+billing_address = '17 Park Street'
+vaccinated = False
+ccard = input('Updated credit card number (trust im not stealing info): ')
+owner_name = 'Alex Jones'
+account_balance -= 25
