@@ -12,7 +12,7 @@ Year 11 Software Engineering learning about Object Oriented Programming
   
   cool thing 4
   
-  flexable (which is cool thing 5)
+  able to be flexed (which is cool thing 5)
 </details>
 
 | Statement | Lie detector(T/F) |
