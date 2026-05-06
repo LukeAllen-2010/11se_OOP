@@ -22,6 +22,8 @@ print(pet)
 #ACTIVITIES:
 #1. Add a default new credit card value  of unknown
 
+
+
 #2. In the __str__ method, let the user know if the pet has registered payment details  
 
 #3. Add the vaccinated status  and include it in the special __str__ function
