@@ -17,15 +17,8 @@ def print_pets(list):
   for pet in pets:
       print(f'Pet name: {pet[0]}\nSpecies: {pet[1]}\nAge: {pet[2]}\nVaccination States: {pet[3]}')
       print(' ')
-
-def print_pets(list):
-  for pet in pets:
-      print(f'Pet name: {pet[0]}\nSpecies: {pet[1]}\nAge: {pet[2]}\nVaccination States: {pet[3]}')
-      print(' ')
 #3. Demonstrate what happens when an item is deleted
 
-pets.remove(pets[2])
-print_pets(pets)
 pets.remove(pets[2])
 print_pets(pets)
 
