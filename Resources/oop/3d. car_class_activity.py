@@ -4,17 +4,18 @@
 # - Create a __str__ method that prints make and model
 
 class Car:
-    def __init__(self,make,model,year,price=None):
+    def __init__(self,make,model,year,price=None, for_sale):
         self.make = make
         self.model = model
         self.year = year
         self.price = price
+        self.for_sale = for_sale
 
     def __str__(self):
-
+        return f'Make: {self.make}, Model: {self.model}, For Sale = {self.for_sale}'
 
 c1 = Car('Mazda','6',2005)
-
+c2 = Car('Toyota', '')
 
 cars = [c1]
 

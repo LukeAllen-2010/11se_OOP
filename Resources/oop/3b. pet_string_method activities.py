@@ -9,13 +9,18 @@ class Pet:
         self.age = age
         self.ccard = 'unknown'
         self.vaccinated = False
+    
+    def __str__(self):
+        if self.ccard == 'unknown':
+            return f'You do not have registered payment details. Vaccination Status: {self.vaccinated}'
+        return f'Vaccination Status: {self.vaccinated}'
 
+pet = Pet('ben', 'monkey')
 
+print(pet)
 
 #ACTIVITIES:
 #1. Add a default new credit card value  of unknown
-
-
 
 #2. In the __str__ method, let the user know if the pet has registered payment details  
 
