@@ -14,7 +14,7 @@ class Fighter:
         self.shield = shield
   
     def report(self):
-        print(self.name+':'+ ' Health: '+ str(self.__health))
+        print(self.name,':', 'Health:', str(self.__health))
 
     def is_dead(self):
         if self.__health <= 0:
