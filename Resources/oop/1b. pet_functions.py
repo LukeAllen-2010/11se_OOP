@@ -15,6 +15,7 @@ def help():
 def increase_age():
   global age
   age += 1
+  age += 1
 
 def verify_credit_card(card_num):
   if len(card_num) == 19:
@@ -22,12 +23,16 @@ def verify_credit_card(card_num):
       return True
   return False
 
-def vaccinate_pet():
-  if verify_credit_card(ccard) == True:
-    global account_balance
-    global vaccinated
+def vaccinate():
+  global account_balance
+  global vaccinated
+  if verify_credit_card(input('What is your credit card number? ')) and account_balance - 39 > 0:
     account_balance -= 39
+    account_balance = round(account_balance, 2)
     vaccinated = True
+  else:
+    print('Ensure credit card number is correct and account balance is sufficient')
+
 
 help()
 increase_age()
@@ -50,3 +55,13 @@ if vaccinated != True:
 #2. Ask the user for a credit card number and let them know if it is valid
 #3. If the credit card is valid then reduce balance by $39
 #4. Write and test a function to vaccinate Bonnie 
+
+if verify_credit_card('1234 4334 1001 0000'):
+  print('1234 4334 1001 0000 is accepted')
+
+# if verify_credit_card(input('What is your credit card number? ')) and account_balance - 39 > 0:
+#   account_balance -= 39
+#   vaccinated = True
+
+vaccinate()
+print('Account balance:', account_balance, 'Vaccinated:', vaccinated)
