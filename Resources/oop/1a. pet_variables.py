@@ -19,7 +19,7 @@ ccard = input('What is your credit card number? ')
 #5 Change owner name to Alex Jones
 owner_name = 'Alex Jones'
 #6 Subtract $25 from account balance
-account_balance -= 20
+account_balance -= 25
 
 print(name, animal_category, age, vaccinated, ccard, billing_address, owner_name, account_balance)
 print(account_balance)
