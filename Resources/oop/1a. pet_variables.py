@@ -18,6 +18,7 @@ vaccinated = False
 ccard = input('What is your credit card number? ')
 #5 Change owner name to Alex Jones
 <<<<<<< HEAD
+<<<<<<< HEAD
 #6 Subtract $25 from account balance
 
 age += 1
@@ -34,3 +35,11 @@ account_balance -= 25
 print(name, animal_category, age, vaccinated, ccard, billing_address, owner_name, account_balance)
 print(account_balance)
 >>>>>>> eb761a3 (sync changes)
+=======
+owner_name = 'Alex Jones'
+#6 Subtract $25 from account balance
+account_balance -= 20
+
+print(name, animal_category, age, vaccinated, ccard, billing_address, owner_name, account_balance)
+print(account_balance)
+>>>>>>> main

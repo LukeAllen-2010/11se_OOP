@@ -22,25 +22,6 @@ def verify_credit_card(card_num):
       return True
   return False
 
-<<<<<<< HEAD
-def vaccinate_pet():
-  if verify_credit_card(ccard) == True:
-    global account_balance
-    global vaccinated
-    account_balance -= 39
-    vaccinated = True
-=======
-def vaccinate():
-  global account_balance
-  global vaccinated
-  if verify_credit_card(input('What is your credit card number? ')) and account_balance - 39 > 0:
-    account_balance -= 39
-    account_balance = round(account_balance, 2)
-    vaccinated = True
-  else:
-    print('Ensure credit card number is correct and account balance is sufficient')
-
->>>>>>> eb761a3 (sync changes)
 
 help()
 increase_age()
