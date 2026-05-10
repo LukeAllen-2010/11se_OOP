@@ -22,7 +22,6 @@ def verify_credit_card(card_num):
       return True
   return False
 
-
 help()
 increase_age()
 print(age)

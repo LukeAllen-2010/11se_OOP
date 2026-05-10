@@ -3,16 +3,19 @@
 # - Discuss the use of attributes in the method
 
 class Pet:
-    def __init__(self, name, category, age = 0):
+    def __init__(self, name, category, age, account_balance):
         self.name = name
         self.category = category
         self.age = age
         self.ccard = 'unknown'
         self.vaccinated = False
-        self.account_balance = 0
+        self.account_balance = account_balance
     
     def have_birthday(self):
         self.age += 1
+    
+    def vaccinate(self):
+        self.vaccinate
     
     
 
