@@ -15,7 +15,7 @@ billing_address = '17 Park Street, The Shire 2695'
 #3 No longer vaccinated (change state of vaccinated)
 vaccinated = False
 #4 Prompt user for updated credit card number and save new number
-ccard = input('What is your credit card number? ')
+ccard = input('New credit card number: ')
 #5 Change owner name to Alex Jones
 owner_name = 'Alex Jones'
 #6 Subtract $25 from account balance
