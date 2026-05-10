@@ -19,7 +19,7 @@ c2 = Car('Toyota', '4', 2001)
 c3 = Car('Hyundai', '3', 1999)
 c4 = Car('Mazda', '3', '2000')
 
-cars = [c1]
+cars = [c1, c2, c3, c4]
 
 for car in cars:
     print(car)
