@@ -33,9 +33,9 @@ class Fighter:
             attack = 0
         return attack
     
-    def shield_successful(self, block_time, response):
-        min = block_time / self.shield
-        max = block_time * self.shield
+    def shield_successful(self, block_time, response, target):
+        min = block_time / target.shield
+        max = block_time * target.shield
         print(f'min: {min} | response: {response} | max: {max}')
         return min < response < max
 
@@ -47,7 +47,7 @@ class Fighter:
         time_2 = time.time()
         time_passed = time_2 - time_1
         print('time_passed:', time_passed)
-        if self.shield_successful(block_time, time_passed):
+        if self.shield_successful(block_time, time_passed, target):
             print('Block successful')
             return True
         return False
@@ -68,8 +68,9 @@ def fight(p1, p2):
     else:
         p1.set_health(p2.get_attack(p1))
 
-bandit = Fighter('Benjamin', 4, 40, 'club', 0.1)
-hero = Fighter('Bartholemew the Worthy', 10, 100, 'sword', 0.3)
+bandit = Fighter('Benjamin', 7, 40, 'club')
+hero = Fighter('Bartholemew the Worthy', 20, 100, 'sword', shield_modifier=0.3)
 
 while running:
     fight(bandit, hero)
+    print('======================\n')
