@@ -5,29 +5,48 @@
 
 import random
 
+running = True
+
 class Fighter:
     def __init__(self, name, strength, weapon = None):
         self.name = name
         self.strength = strength
         self.weapon = weapon
-        self.health = 100
+        self.__health = 100
     
-    def get_weapon_damage(self):
+    def get_weapon_dmg(self):
         if self.weapon == 'sword':
             return 10
         elif self.weapon == 'club':
             return 6
         elif self.weapon == 'halberd':
             return 8
+        else:
+            return 0
 
-    def slime_out(self):
-        attack = self.strength + self.get_weapon_damage + random.randint(-5, 8)
+    def get_attack(self):
+        attack = self.strength + self.get_weapon_dmg() + random.randint(-5, 8)
+        print(f'{self.name} does {attack} damage')
         return attack
+    
+    def set_health(self, modifier):
+        self.__health -= modifier
+        if self.__health <= 0:
+            self.is_dead()
+
+    def is_dead(self):
+        global running
+        running = False
+        print(self.name, 'loses')
+    
+def fight(p1, p2):
+    if random.randint(1, 2) == 1:
+        p2.set_health(p1.get_attack())
+    else:
+        p1.set_health(p2.get_attack())
 
 player1 = Fighter('Benjamin', 4, 'club')
 player2 = Fighter('Bartholemew the Worthy', 10, 'sword')
 
-if random.randint(1, 2) == 1:
-    player2.health -= player1.slime_out()
-else:
-    player1.health -= player2.slime_out()
+while running:
+    fight(player1, player2)
