@@ -79,7 +79,11 @@ class Spell:
         return attack
 
 global SPELL_MAPPING
-SPELL_MAPPING = {1: "fireball", 2: "freeze"}
+SPELL_MAPPING = {
+    1: "fireball", 
+    2: "freeze",
+    3: "eviscerate"
+}
 
 class Mage(Fighter):
     def __init__(self, name, starting_health, weapon, shield, proficiency_bonus):
