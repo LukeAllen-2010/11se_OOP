@@ -19,7 +19,6 @@ WEAPON_MAPPING = {
     'greatsword' : (2,6),
     'halberd' : (1,10),
     'rapier' : (1,8)
-
 }
 
 class Spell:
@@ -42,12 +41,28 @@ class Spell:
         return attack
 
 class Weapon:
-    def __init__(self, dice_amount, dice_type, ability_type):
+    def __init__(self, dice_amount, dice_type, ability_type, proficiency_bonus):
         self.d_amt = dice_amount
         self.d_type = dice_type
         self.ability_type = ability_type
+        self.prof_bonus = proficiency_bonus
 
-class Hero:
+    def get_dmg_roll(self, roll, ability_modifier, attack_hits:bool): # use get_roll and get_ability_score
+        if attack_hits:
+            return roll + ability_modifier
+        else:
+            print('Attack misses')
+            return 0
+    
+    def get_atk_roll(self, roll, target_ac, stat_bonus:str):
+        proficiency_bonus = self.weapon.proficiency_bonus
+        ability_modifier = get_ability_modifier(self.ability[stat_bonus]) #weapon's stat_bonus : str, dex, etc.
+        if roll + proficiency_bonus + ability_modifier > target_ac:
+            return True
+        return False
+    
+
+class Entity:
     def __init__(self, name:str, starting_health:int, weapon:str, armour_class:int, strength:int, dexterity:int, constitution:int, intelligence:int, wisdom:int, charisma:int, gp=0, sp=0, cp=0):
         self.name = name
         self.__health = starting_health
@@ -55,7 +70,6 @@ class Hero:
         self.weapon_dice = WEAPON_MAPPING[weapon]
         self.abilities = {'str':strength, 'dex':dexterity, 'con':constitution, 'int':intelligence, 'wis':wisdom, 'cha':charisma}
         self.ac = armour_class
-        self.purse = {'gp':gp, 'sp':sp, 'cp':cp}
 
     def get_roll(self, dice_amount, dice_type):
         roll = 0
@@ -78,22 +92,7 @@ def get_ability_modifier(self, ability_score):
     return int(round(ability_modifier))
 
 
-def get_dmg_roll(self, base_roll, ability_modifier): # use get_roll and get_ability_score
-    if get_atk_roll():
-        return base_roll + ability_modifier
-    else:
-        print('Attack misses')
-        return 0
-    
 
-def get_atk_roll(self, target_ac):
-    roll = self.get_roll(1, 20)
-    proficiency_bonus = self.weapon.proficiency_bonus
-    stat_bonus = 'str' #weapon's stat_bonue : str, dex, etc.
-    ability_modifier = get_ability_modifier(self.ability[stat_bonus])
-    if roll + proficiency_bonus + ability_modifier > target_ac:
-        return True
-    return False
 
 def get_roll(self, d_amt, d_type):
     roll = 0
@@ -105,3 +104,9 @@ def get_roll(self, d_amt, d_type):
 hero = Hero('Gimli', 100, 'halberd', 12, 10, 10, 10, 10, 10, 10)
 
 hero.attack()
+
+
+
+class Humanoid(Entity):
+    def __init__(self, gold, silver, copper):
+        self.purse = {'gp':gold, 'sp':silver, 'cp':copper}
