@@ -2,68 +2,124 @@ class structure:
 - instance variable / attribute
 > function
 
-<details>
-    <summary>Weapon</summary>
+Room => to generate a random room
+- enemy_list: grabs from list of random rooms
+- doors
+- 
 
-- dice_amt # 3 in 3d6 (amount of dice being rolled)
-- dice_type # 6 in 3d6 (type of dice being rolled)
-- melee/ranged = boolean #? e.g ranged = False (thus melee is true)
-melee-strength, ranged-dex
+- [get_atk_roll](#get_atk_roll)
+- [get_dmg_roll](#get_dmg_roll)
 
-- cost?
-- finesse? = boolean #Can use either dex or str
 
-> get_atk_roll():
+Spell
+- name
+- dmg_dice
+- save_dc
 
+
+## Entity
+- stats = {} applied with standard array => split 6 random stats among your 
+- name = str
+- size = str (effects initial health calculation)
+- armour_class = int
+- weapon = instance of class Weapon
+- attacks = []
+
+<!-- - immunities = []? -->
+<!-- - vulnerabilities = []? -->
+
+- [get_roll](#get_roll)
+- [get_ability_score](#get_ability_score)
+- [get_proficiency_bonus](#get_proficiency_bonus)
+
+### Hero(Entity)
+- purse = {}
+- race = str
+
+
+### Monster(Entity)
+- challenge_rating = float 
+- attacks = []
+
+- [add_attack](#add_attack)
+self.add_attack(sword_attack(6))
+
+
+    class attack:
+    def execute()
+    class sword_attack(attack):
+    def __init__(max_dmg):
+    self.mzx_dmg = max_dmg
+    def execute()
+
+## Attack
+- damage_dice = (dice_amount, dice_type)
+- melee = bool
+- ranged = bool
+- melee:strength, ranged:dexterity (when calculating bonuses for atk rolls)
+
+
+- [get_atk_roll](#get_atk_roll)
+- [get_dmg_roll](#get_dmg_roll)
+
+### WeaponAttack(Attack)
+- 
+
+### UnarmedStrike(Attack)
+1 + strength mod
+- self.name = name
+- strength_mod = int
+- damage
+- proficiency_bonus
+
+
+- 
+
+
+for bosses:
+- lair actions (if boss)
+
+
+MultiAttack
+- attack = class # which attack is used
+- attack_repeat = int # how many times attack is done
+
+
+
+
+
+
+
+
+
+### get_dmg_roll():
+    BEGIN
+        INPUT roll # get_roll, using weapon dice
+        INPUT bonus_modifier
+        OUTPUT roll + bonus_modifier
+    END
+### get_atk_roll():
     BEGIN
         INPUT roll # get_roll
         INPUT proficiency_bonus
-        INPUT stat_bonus # str, dex, 
+        INPUT stat_bonus # strength, dex, 
         INPUT target_ac
         if roll + proficiency_bonus + strength > target_ac
             OUPUT True
         OUPUT False
     END
 
-> get_dmg_roll():
-
-    BEGIN
-        INPUT roll # get_roll, using weapon dice
-        INPUT bonus_modifier
-        OUTPUT roll + bonus_modifier
+### get_roll(): 
+    BEGIN 
+        roll = 0
+        INPUT DICE_TYPE
+        FOR dice = 1 to DICE_TYPE
+            roll = roll + random_integer(1, dice_type)
+        NEXT dice
+        OUTPUT roll
     END
-
-
-
-> get_dmg_roll
-</details>  
-
-
-<details>
-<summary>Spell</summary>
-
-</details>
-
-
-Entity
-- stats = {}
-- name = str
-- size = str (effects initial health calculation)
-- armour_class
-
-
-
-Humanoid(Entity)
-- purse = {}
-- weapon # using class weapon
-
-
-Goblinoid(Entity)
-
-
-
-    __init__ (needs name, weapon, ac, stats and money)
-
+    
+### get_ability_score():
     BEGIN # get_ability_score
         INPUT ability_score
         stat_modifier = -5
@@ -75,59 +131,37 @@ Goblinoid(Entity)
         OUTPUT score
     END
 
-===
 
 
-===
+### add_attack
+    BEGIN
+        INPUT attack_name # e.g bite
+        INPUT parent # attack type class # e.g unarmed strike
+        INPUT damage_dice # e.g 1d4 + strength
+        INPUT strength OR dexterity
+        INPUT melee or ranged
+        {'melee' : 'strength', 'ranged' : 'dex'}
 
 
-====
+        IF 
 
-    BEGIN #get_roll()
-        roll = 0
-        INPUT DICE_TYPE
-        FOR dice = 1 to DICE_TYPE
-            roll = roll + random_integer(1, dice_type)
-        NEXT dice
-        OUTPUT roll
+        ELSE
+            bonus
+        OUPUTE parent(attack_name, max_dmg) class
+
+
+    - damage_dice = (dice_amount, dice_type)
+- melee = bool
+- ranged = bool
+- melee:strength, ranged:dexterity (when calculating bonuses for atk rolls)
+
+
+def add_spell(self, spell_name:strength, spell_dmg:int, proficiency_bonus=0):
+    self.spells[spell_name] = Spell(spell_name, spell_dmg, 8 + proficiency_bonus)
+
+### get_proficiency_bonus
+    BEGIN
+        INPUT level # self
+        bonus = (level - 1) // 4 + 2
+        OUTPUT bonus
     END
-
-    def roll_to_hit()
-        
-
-    def basic attack(self):
-        
-
-
-
-
-
-
-
-
-
-
-class Mage(Hero):
-    def __init__(self, name, starting_health, weapon, shield, proficiency_bonus):
-        super().__init__(name, starting_health, weapon, shield)
-        self.spells = {}
-        self.prof_bonus = proficiency_bonus
-
-    def add_spell(self, spell_name:str, spell_dmg:int, proficiency_bonus=0):
-        self.spells[spell_name] = Spell(spell_name, spell_dmg, 8 + proficiency_bonus)
-
-    def get_spell(self, spell_name):
-        return self.spells[spell_name]
-
-    def cast_spell(self, save_attempt):
-        action = input('What spell would you like to use: fireball (1), freeze(2) ')
-        spell_name = SPELL_MAPPING[int(action)]
-        spell = self.get_spell(spell_name)
-        return spell.cast_spell(save_attempt)
-
-
-
-
-
-    
-    
