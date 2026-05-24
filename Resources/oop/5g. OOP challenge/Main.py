@@ -1,14 +1,14 @@
-enemies = ['troll_1', 'troll_2', 'goblin', 'bear', 'angry_toadstool']
+# enemies = ['troll_1', 'troll_2', 'goblin', 'bear', 'angry_toadstool']
 
-enemy_list_str = f'Which enemy would you like to hit: '
-for enemy_num, enemy in enumerate(enemies, 1):
-    enemy_list_str += f'{enemy}({enemy_num}) '
+# enemy_list_str = f'Which enemy would you like to hit: '
+# for enemy_num, enemy in enumerate(enemies, 1):
+#     enemy_list_str += f'{enemy}({enemy_num}) '
 
-player_target = int(input(enemy_list_str))
-# target = int(input(f'which enemy would you like to hit: {enemies[0]}(1), {enemies[1]}(2)'))
-enemies[player_target - 1].shield
+# player_target = int(input(enemy_list_str)) - 1
+# # target = int(input(f'which enemy would you like to hit: {enemies[0]}(1), {enemies[1]}(2)'))
+# player_target.get_roll(1,20)
 
-enemies[1]
+# enemies[1]
 
 import random, time
 
@@ -101,9 +101,9 @@ def get_roll(self, d_amt, d_type):
     return roll
 
 
-hero = Hero('Gimli', 100, 'halberd', 12, 10, 10, 10, 10, 10, 10)
+# hero = Hero('Gimli', 100, 'halberd', 12, 10, 10, 10, 10, 10, 10)
 
-hero.attack()
+# hero.attack()
 
 
 

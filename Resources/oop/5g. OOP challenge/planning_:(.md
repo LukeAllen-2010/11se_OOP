@@ -1,20 +1,28 @@
-class structure:
-- instance variable / attribute
-> function
-
-Room => to generate a random room
-- enemy_list: grabs from list of random rooms
-- doors
-- 
-
-- [get_atk_roll](#get_atk_roll)
-- [get_dmg_roll](#get_dmg_roll)
+## Story
+- set in Swordcoast
+- in a whole bunch of debt
+- enslaved to Ironclad Syndicate guildmaster
+- dungeoneering to pay off debts
 
 
-Spell
+## Room 
+- enemy_count = int
+- door_amount = int
+- doors = [int] randomly chosen from other rooms
+- [generate_room](#generate_room)
+
+
+
+
+
+# CLASSES
+
+
+## Spell
 - name
 - dmg_dice
 - save_dc
+- proficiency_bonus
 
 
 ## Entity
@@ -44,14 +52,6 @@ Spell
 - [add_attack](#add_attack)
 self.add_attack(sword_attack(6))
 
-
-    class attack:
-    def execute()
-    class sword_attack(attack):
-    def __init__(max_dmg):
-    self.mzx_dmg = max_dmg
-    def execute()
-
 ## Attack
 - damage_dice = (dice_amount, dice_type)
 - melee = bool
@@ -59,22 +59,19 @@ self.add_attack(sword_attack(6))
 - melee:strength, ranged:dexterity (when calculating bonuses for atk rolls)
 
 
-- [get_atk_roll](#get_atk_roll)
-- [get_dmg_roll](#get_dmg_roll)
+- [get_attack_roll](#get_attack_roll)
+- [get_damage_roll](#get_damage_roll)
 
 ### WeaponAttack(Attack)
 - 
 
 ### UnarmedStrike(Attack)
+d20 + strength mod + proficiency bonus
 1 + strength mod
 - self.name = name
 - strength_mod = int
 - damage
 - proficiency_bonus
-
-
-- 
-
 
 for bosses:
 - lair actions (if boss)
@@ -88,17 +85,25 @@ MultiAttack
 
 
 
-
-
-
-
-### get_dmg_roll():
+### generate_room():
     BEGIN
-        INPUT roll # get_roll, using weapon dice
-        INPUT bonus_modifier
-        OUTPUT roll + bonus_modifier
-    END
-### get_atk_roll():
+        INPUT enemies
+        INPUT enemy_count
+        FOR enemy = 1 TO enemy_count
+            APPEND 
+            
+            
+            enemies 
+
+### generate_enemy():
+    BEGIN
+        enemy_list = [] # list
+
+
+
+
+
+### get_attack_roll():
     BEGIN
         INPUT roll # get_roll
         INPUT proficiency_bonus
@@ -108,6 +113,14 @@ MultiAttack
             OUPUT True
         OUPUT False
     END
+
+### get_damage_roll():
+    BEGIN
+        INPUT roll # get_roll, using weapon dice
+        INPUT bonus_modifier
+        OUTPUT roll + bonus_modifier
+    END
+
 
 ### get_roll(): 
     BEGIN 
@@ -133,20 +146,18 @@ MultiAttack
 
 
 
-### add_attack
+### add_attack():
     BEGIN
         INPUT attack_name # e.g bite
-        INPUT parent # attack type class # e.g unarmed strike
         INPUT damage_dice # e.g 1d4 + strength
         INPUT strength OR dexterity
         INPUT melee or ranged
         {'melee' : 'strength', 'ranged' : 'dex'}
-
-
-        IF 
-
+        IF melee IS True THEN
+            ability_bonus = strength # self
         ELSE
-            bonus
+            ability_bonus = dexterity # self
+        END IF
         OUPUTE parent(attack_name, max_dmg) class
 
 
@@ -159,7 +170,7 @@ MultiAttack
 def add_spell(self, spell_name:strength, spell_dmg:int, proficiency_bonus=0):
     self.spells[spell_name] = Spell(spell_name, spell_dmg, 8 + proficiency_bonus)
 
-### get_proficiency_bonus
+### get_proficiency_bonus():
     BEGIN
         INPUT level # self
         bonus = (level - 1) // 4 + 2
