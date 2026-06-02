@@ -12,14 +12,15 @@
 
 import random, time
 
-WEAPON_MAPPING = {
-    'dagger' : (1,4),
-    'club' : (1,4),
-    'spear' : (1,6),
-    'greatsword' : (2,6),
-    'halberd' : (1,10),
-    'rapier' : (1,8)
+DICE = {
+    'd4' : random.randint(1,4),
+    'd8' : random.randint(1,8),
+    'd10' : random.randint(1,10),
+    'd12' : random.randint(1,12),
+    'd20' : random.randint(1,20),
+    'd100' : random.randint(0,99)
 }
+
 
 class Spell:
     def __init__(self, name, damage, save_dc):
@@ -54,12 +55,12 @@ class Weapon:
             print('Attack misses')
             return 0
     
-    def get_atk_roll(self, roll, target_ac, stat_bonus:str):
-        proficiency_bonus = self.weapon.proficiency_bonus
-        ability_modifier = get_ability_modifier(self.ability[stat_bonus]) #weapon's stat_bonus : str, dex, etc.
-        if roll + proficiency_bonus + ability_modifier > target_ac:
-            return True
-        return False
+def get_atk_roll(self, roll, target_ac, stat_bonus:str):
+    proficiency_bonus = self.weapon.proficiency_bonus
+    ability_modifier = get_ability_modifier(self.ability[stat_bonus]) #weapon's stat_bonus : str, dex, etc.
+    if roll + proficiency_bonus + ability_modifier > target_ac:
+        return self.rend.get_dmg_roll()
+    return False
     
 
 class Entity:
