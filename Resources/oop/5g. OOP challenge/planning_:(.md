@@ -233,9 +233,6 @@ MultiAttack
 - melee:strength, ranged:dexterity (when calculating bonuses for atk rolls)
 
 
-def add_spell(self, spell_name:strength, spell_dmg:int, proficiency_bonus=0):
-    self.spells[spell_name] = Spell(spell_name, spell_dmg, 8 + proficiency_bonus)
-
 ### get_proficiency_bonus():
     BEGIN
         INPUT level # self
