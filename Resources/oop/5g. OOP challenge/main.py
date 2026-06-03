@@ -1,7 +1,7 @@
 import random
 from entity import Entity
 
-opps = {
+enemies = {
     'kobold' : Entity('kobold', 25, ['rend'], 13, 14, 12),
     'goblin_minion_1' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10),
     'goblin_minion_2' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10),
@@ -31,17 +31,18 @@ def get_initiative_order(entities, player):
     initiative_order[player.name] = player.get_initiative_roll()
     return {k : v for k, v in sorted(initiative_order.items(), key = lambda item : item[1])}
 
-initiative_order = get_initiative_order(opps, hero)
+initiative_order = get_initiative_order(enemies, hero)
 
 running = True
 while running:
     for entity in initiative_order:
         print(f'\nit is {entity}\'s turn')
         if entity == hero.name:
-            if not opps:
+            if not enemies:
                 running = False
+                print('YOU WIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
             else:
-                target = choose_target(opps)
+                target = choose_target(enemies)
                 attack = choose_attack(hero) # rend
                 hero.attack_target(attack, target.ac)
                 if target.is_dead():
@@ -51,20 +52,16 @@ while running:
                 else:
                     print(f'{target} still alive at {target.health}HP')
         else:
-            entity = opps[entity]
+            entity = enemies[entity]
             attack = entity.attack_target(random.choice(list(entity.attacks)), hero.ac)
             hero.health -= attack
             if hero.is_dead():
                 print('YOU LOSE')
+                running = False
                 break
             else:
                 print(f'{hero.name} still alive at {hero.health}HP')
             
-    for opp in opps:
-        print(f'{opp} health: {opps[opp].health}')
+    for enemy in enemies:
+        print(f'{enemy} health: {enemies[enemy].health}')
     print(f'{hero.name} health: {hero.health}')
-# enemies = ['troll_1', 'troll_2', 'goblin', 'bear', 'angry_toadstool']
-
-
-    # target = int(input(f'which enemy would you like to hit: {enemies[0]}(1), {enemies[1]}(2)'))
-    # player_target.get_roll(1, 'd20')

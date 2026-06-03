@@ -10,15 +10,6 @@ def print_line(message, delay = 0.1):
         else:
             time.sleep(delay)
 
-
-    # def add_attack(self, attack_name:str, dice_amount, dice_type, melee):
-    #     if melee:
-    #         ability_modifier = self.get_ability_modifier(self.abilities['strength'])
-    #     else:
-    #         ability_modifier = self.get_ability_modifier(self.abilities['dexterity'])
-    #     self.attacks[attack_name] = Weapon(attack_name, dice_amount, dice_type, ability_modifier)
-
-
 DICE = {
     'd4' : lambda : random.randint(1,4),
     'd8' : lambda : random.randint(1,8),
