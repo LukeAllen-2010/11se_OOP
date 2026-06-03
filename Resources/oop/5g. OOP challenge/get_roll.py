@@ -9,7 +9,6 @@ DICE = {
     'd100' : lambda : random.randint(0,99)
 }
 
-
 def get_roll(dice_amount, dice_type):
         roll = 0
         for dice in range(dice_amount):
