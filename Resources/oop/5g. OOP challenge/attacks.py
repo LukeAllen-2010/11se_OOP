@@ -8,7 +8,9 @@ class PhysicalAttack:
         return get_roll(self.DICE[0], self.DICE[1]) + ability_bonus
     
 ATTACKS = {
-    'rend' : (PhysicalAttack(1, 'd4').get_dmg_roll, 'dexterity'), 
-    'halberd' : (PhysicalAttack(1, 'd10').get_dmg_roll, 'dexterity'), 
-    'greatsword' : (PhysicalAttack(2, 'd6').get_dmg_roll, 'strength')
+    'rend' : (PhysicalAttack(1, 'd4').get_dmg_roll, 'strength'), 
+    'halberd' : (PhysicalAttack(1, 'd10').get_dmg_roll, 'strength'), 
+    'greatsword' : (PhysicalAttack(2, 'd6').get_dmg_roll, 'strength'),
+    'rapier' : (PhysicalAttack(1, 'd8'), 'dexterity'),
+    'shortbow' : (PhysicalAttack(1, 'd6'), 'dexterity')
 }
