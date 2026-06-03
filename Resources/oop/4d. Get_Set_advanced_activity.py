@@ -44,11 +44,18 @@ class Pet:
         return my_status
 
 p1 = Pet(name='Bonnie', category='Dog')
-p2 = Pet('Clyde','Cat','Persian',12)
-p3 = Pet('Cindy', 'Dog',age = 3)
+p2 = Pet('Clyde', 'Cat', 'Persian', 12)
+p3 = Pet('Cindy', 'Dog', age = 3)
+p4 = Pet('Benjamin', 'Ape', 'Siamang')
+p5 = Pet('Mocha', 'Dog', 'Kelpie', 5)
 
+pets = [p1,p2,p3,p4,p5]
+for pet in pets:
+    pet.age += 1
+    if pet.get_category() == 'Dog':
+        print(pet)
+        print('')
 
-pets = [p1,p2,p3]
 
 
 #ACTIVITIES:
