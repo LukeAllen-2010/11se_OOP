@@ -13,6 +13,7 @@ def print_line(message, delay = 0.1):
 DICE = {
     'd4' : lambda : random.randint(1,4),
     'd8' : lambda : random.randint(1,8),
+    'd6' : lambda : random.randint(1,6),
     'd10' : lambda : random.randint(1,10),
     'd12' : lambda : random.randint(1,12),
     'd20' : lambda : random.randint(1,20),

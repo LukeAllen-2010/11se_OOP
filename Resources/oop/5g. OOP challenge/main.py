@@ -8,7 +8,7 @@ enemies = {
     'goblin_minion_3' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10)
 }
 
-hero =  Entity('bob', 10, ['rend', 'halberd'], 2, 10, 10)
+hero =  Entity('bob', 1000, ['rend', 'halberd'], 2, 10, 10)
 
 def choose_target(enemies):
     enemy_list_str = f'Which enemy would you like to hit: '
@@ -44,7 +44,7 @@ while running:
             else:
                 target = choose_target(enemies)
                 attack = choose_attack(hero) # rend
-                hero.attack_target(attack, target.ac)
+                target.health -= hero.attack_target(attack, target.ac)
                 if target.is_dead():
                     print(f'{target.name} is dead')
                     entity.remove(target)

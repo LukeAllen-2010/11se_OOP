@@ -2,6 +2,7 @@ import random
 
 DICE = {
     'd4' : lambda : random.randint(1,4),
+    'd6' : lambda : random.randint(1,6),
     'd8' : lambda : random.randint(1,8),
     'd10' : lambda : random.randint(1,10),
     'd12' : lambda : random.randint(1,12),

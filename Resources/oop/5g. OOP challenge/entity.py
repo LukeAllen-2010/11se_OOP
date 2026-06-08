@@ -19,13 +19,15 @@ class Entity:
         return (self.level - 1) // 4 + 2
     
     def get_attack_roll(self, ability_bonus_modifier):
-        return int(self.get_proficiency_bonus() + ability_bonus_modifier)
+        return get_roll(1, 'd20') + self.get_proficiency_bonus() + ability_bonus_modifier
 
     def attack_target(self, attack:str, target_ac):
         ability_bonus_type = self.attacks[attack][1] # e.g dexterity or strength
         print(f'{ability_bonus_type}: {self.abilities[ability_bonus_type]}')
         ability_bonus_modifier = self.get_ability_modifier(ability_bonus_type) # finding bonus by passing stat type into get_ability_modifier()
-        if self.get_attack_roll(ability_bonus_modifier) > target_ac: 
+        roll = self.get_attack_roll(ability_bonus_modifier)
+        print(roll)
+        if roll > target_ac:
             print(f'{self.name} HIT!!!')
             return self.attacks[attack][0](ability_bonus_modifier) # runs get_damage_roll() for that attack and returns number
         print(f'{self.name} MISSED!!')
