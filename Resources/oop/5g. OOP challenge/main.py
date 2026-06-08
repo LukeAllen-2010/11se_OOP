@@ -3,9 +3,7 @@ from entity import Entity
 
 enemies = {
     'kobold' : Entity('kobold', 25, ['rend'], 13, 14, 12),
-    'goblin_minion_1' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10),
-    'goblin_minion_2' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10),
-    'goblin_minion_3' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10)
+    'goblin' : Entity('goblin minion', 5, ['rend', 'greatsword'], 10, 10, 10)
 }
 
 hero =  Entity('bob', 1000, ['rend', 'halberd'], 2, 10, 10)

@@ -11,6 +11,7 @@ ATTACKS = {
     'rend' : (PhysicalAttack(1, 'd4').get_dmg_roll, 'strength'), 
     'halberd' : (PhysicalAttack(1, 'd10').get_dmg_roll, 'strength'), 
     'greatsword' : (PhysicalAttack(2, 'd6').get_dmg_roll, 'strength'),
-    'rapier' : (PhysicalAttack(1, 'd8'), 'dexterity'),
-    'shortbow' : (PhysicalAttack(1, 'd6'), 'dexterity')
+    'rapier' : (PhysicalAttack(1, 'd8').get_dmg_roll, 'dexterity'),
+    'shortbow' : (PhysicalAttack(1, 'd6').get_dmg_roll, 'dexterity'),
+    'dagger' : (PhysicalAttack(1, 'd4').get_dmg_roll, 'dexterity')
 }
