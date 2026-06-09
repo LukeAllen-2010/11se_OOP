@@ -38,7 +38,7 @@ while running:
         if entity == hero.name:
             if not enemies:
                 running = False
-                print('YOU WIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+                print('\nYOU WIN!\n')
             else:
                 target = choose_target(enemies)
                 attack = choose_attack(hero) # rend
@@ -54,7 +54,7 @@ while running:
             attack = entity.attack_target(random.choice(list(entity.attacks)), hero.ac)
             hero.health -= attack
             if hero.is_dead():
-                print('YOU LOSE')
+                print('\nYOU LOSE!\n')
                 running = False
                 break
             else:
