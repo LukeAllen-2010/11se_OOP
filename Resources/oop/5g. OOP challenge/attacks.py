@@ -15,3 +15,4 @@ ATTACKS = {
     'shortbow' : (PhysicalAttack(1, 'd6').get_dmg_roll, 'dexterity'),
     'dagger' : (PhysicalAttack(1, 'd4').get_dmg_roll, 'dexterity')
 }
+

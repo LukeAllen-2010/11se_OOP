@@ -1,5 +1,5 @@
-import random
 from entity import Entity
+from print_line import print_line
 
 enemies = {
     'kobold' : Entity('kobold', 25, ['rend'], 13, 14, 12),
@@ -10,17 +10,12 @@ hero =  Entity('bob', 1000, ['rend', 'halberd'], 2, 10, 10)
 
 def choose_target(enemies):
     enemy_list_str = f'Which enemy would you like to hit: '
-    print(f'{len(enemies)} enemies face you: ', end="")
+    print_line(f'{len(enemies)} enemies face you: ')
     for enemy_num, enemy in enumerate(enemies, 1):
-        print(f'{enemy}({enemy_num})', end=", ")
+        print_line(f'{enemy}({enemy_num}), ')
+    print_line('. Which shall you attack?')
     player_target = enemies[list(enemies)[int(input('which shall you attack?\n')) - 1]]
     return player_target
-
-def choose_attack(hero):
-    print('These are your attacks: ', end='')
-    for attack in hero.attacks:
-        print(attack, end=', ')
-    return input('which do you pick?\n').lower()
 
 def get_initiative_order(entities, player):
     initiative_order = {}
@@ -31,9 +26,12 @@ def get_initiative_order(entities, player):
 
 initiative_order = get_initiative_order(enemies, hero)
 
+print(initiative_order)
+print(enemies)
 running = True
 while running:
     for entity in initiative_order:
+
         print(f'\nit is {entity}\'s turn')
         if entity == hero.name:
             if not enemies:
@@ -41,7 +39,7 @@ while running:
                 print('\nYOU WIN!\n')
             else:
                 target = choose_target(enemies)
-                attack = choose_attack(hero) # rend
+                attack = hero.choose_attack # rend
                 target.health -= hero.attack_target(attack, target.ac)
                 if target.is_dead():
                     print(f'{target.name} is dead')
@@ -50,9 +48,8 @@ while running:
                 else:
                     print(f'{target} still alive at {target.health}HP')
         else:
-            entity = enemies[entity]
-            attack = entity.attack_target(random.choice(list(entity.attacks)), hero.ac)
-            hero.health -= attack
+            enemy = enemies[entity]
+            hero.health -= enemy.get_turn()
             if hero.is_dead():
                 print('\nYOU LOSE!\n')
                 running = False
